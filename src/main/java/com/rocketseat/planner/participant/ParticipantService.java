@@ -30,5 +30,5 @@ public class ParticipantService {
 
     public  void triggerConfirmationEmailToParticipants(UUID tripId){};
 
-    public  void triggerConfirmationEmailToParticipants(String email){};
+    public  void triggerConfirmationEmailToParticipant(String email){};
 }

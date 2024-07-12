@@ -77,13 +77,13 @@ public class TripController {
     }
 
     @PostMapping("/{id}/invite")
-    public ResponseEntity<ParticipantCreateResponse> inviteParticipants(@PathVariable UUID id, @RequestBody ParticipantRequestPayload payload){
+    public ResponseEntity<ParticipantCreateResponse> inviteParticipant(@PathVariable UUID id, @RequestBody ParticipantRequestPayload payload){
         Optional<Trip> trip = this.repository.findById(id);
 
         if(trip.isPresent()){
             Trip rawTrip = trip.get();
 
-            ParticipantCreateResponse participantResponse = this.participantService.registerParticipantsToEvent(payload.email(), rawTrip);
+            ParticipantCreateResponse participantResponse = this.participantService.registerParticipantToEvent(payload.email(), rawTrip);
 
             if(rawTrip.getIsConfirmed()) this.participantService.triggerConfirmationEmailToParticipant(payload.email());
 
